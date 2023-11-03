@@ -4,6 +4,19 @@ import React from "react";
 import Form from "./form";
 import Results from "./results";
 
+export const handler = async (event: any) => {
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "https://kittybot.vercel.app",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+        body: JSON.stringify('Hello from Lambda!'),
+    };
+    return response;
+  };
+
 const KittyBot: React.FC = () => {
     const CHARACTER_LIMIT: number = 30;
     const ENDPOINT: string = "https://9e364421f0.execute-api.ap-southeast-2.amazonaws.com/prod/generate_snippet_and_keywords"; 
