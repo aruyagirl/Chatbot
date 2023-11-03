@@ -10,7 +10,7 @@ Max_input_length = 30
 origins = [
     "http://localhost:3000",
     "https://9e364421f0.execute-api.ap-southeast-2.amazonaws.com/prod",
-    "https://kittybot.vercel.app/"
+    "https://kittybot.vercel.app"
 ]
 
 app.add_middleware(
