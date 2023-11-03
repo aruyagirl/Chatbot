@@ -5,6 +5,19 @@ import * as apiGateway from 'aws-cdk-lib/aws-apigateway';
 import * as dotenv from "dotenv";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
+export const handler = async (event: any) => {
+  const response = {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'https://kittybot.vercel.app',
+      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+    },
+    body: JSON.stringify('Hello from Lambda!'),
+  };
+  return response;
+};
+
 dotenv.config()
 
 export class KittybotInfraStack extends Stack {
@@ -27,6 +40,8 @@ export class KittybotInfraStack extends Stack {
         "OPENAI_API_KEY": process.env.OPENAI_API_KEY ?? "",
       },
     });
+
+    apiLambda.addEnvironment('CORS_HEADERS', 'true');
 
     const kittybotApi = new apiGateway.RestApi(this, "RestApi", {
       restApiName: "KittyBott API",
